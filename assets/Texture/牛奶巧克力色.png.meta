@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "bc27f542-ee53-4185-9bb0-0a445af76a8a",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 310,
+  "height": 320,
+  "platformSettings": {},
+  "subMetas": {
+    "牛奶巧克力色": {
+      "ver": "1.0.4",
+      "uuid": "d234cb5d-44a5-43a0-9986-923c32f80c0d",
+      "rawTextureUuid": "bc27f542-ee53-4185-9bb0-0a445af76a8a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 310,
+      "height": 320,
+      "rawWidth": 310,
+      "rawHeight": 320,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
