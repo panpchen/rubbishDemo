@@ -16,6 +16,12 @@ const HAND_POS = [
 ];
 
 const ORDER_PROGRESS = ["汁", "水", "色", "味", "碳酸氢钠"];
+const ANSWER_CONFIG = [
+  { type: "苹果汁", condition: "水,果绿色,苹果味,碳酸氢钠" },
+  { type: "葡萄汁", condition: "水,葡萄色,葡萄味,碳酸氢钠" },
+  { type: "芒果汁", condition: "水,柠檬黄色,芒果味,碳酸氢钠" },
+  { type: "奶茶", condition: "水,牛奶巧克力色,奶茶味,碳酸氢钠" },
+];
 
 @ccclass
 export default class Game extends cc.Component {
@@ -25,21 +31,37 @@ export default class Game extends cc.Component {
   hand: cc.Node = null;
   @property(cc.Node)
   winPanel: cc.Node = null;
+  @property(cc.AudioSource)
+  audioSource: cc.AudioSource = null;
   @property(cc.AudioClip)
-  clickClip: cc.AudioClip = null;
+  failClip: cc.AudioClip = null;
+  @property(cc.AudioClip)
+  winClip: cc.AudioClip = null;
+  @property([cc.AudioClip])
+  progressAudios: cc.AudioClip[] = [];
+  @property([cc.SpriteFrame])
+  cupSpriteFrameList: cc.SpriteFrame[] = [];
+  @property(cc.Sprite)
+  cup: cc.Sprite = null;
   public static instance: Game = null;
   private _tip: cc.Node = null;
-  private _selectItems: cc.Toggle[] = [];
+  private _selectItems: cc.Node[] = [];
   private _curProgressId: number = 0;
   private m_isOver: boolean = false;
 
   onLoad() {
     Game.instance = this;
     this.setHandPos();
+    this.playAudio(this.progressAudios[this._curProgressId]);
   }
 
   setHandPos() {
     this.hand.setPosition(HAND_POS[this._curProgressId]);
+  }
+
+  playAudio(clip: cc.AudioClip) {
+    cc.audioEngine.stopAll();
+    cc.audioEngine.play(clip, false, 1);
   }
 
   showTips(content) {
@@ -54,9 +76,35 @@ export default class Game extends cc.Component {
     this._tip.parent = cc.director.getScene();
   }
 
-  onClickItem(toggle: cc.Toggle, parm) {
-    cc.audioEngine.play(this.clickClip, false, 1);
+  setCupStyle(name = "") {
+    let id = -1;
+    switch (name) {
+      case "果绿色":
+        id = 0;
+        break;
+      case "葡萄色":
+        id = 1;
+        break;
+      case "柠檬黄色":
+        id = 2;
+        break;
+      case "牛奶巧克力色":
+        id = 3;
+        break;
+      case "水":
+        id = 4;
+        break;
+      case "空杯":
+        id = 5;
+        break;
+    }
+    if (id != -1) {
+      this.cup.spriteFrame = this.cupSpriteFrameList[id];
+    }
+  }
 
+  onClickItem(toggle: cc.Toggle, parm) {
+    this.audioSource.play();
     if (this.m_isOver) {
       if (!toggle.isChecked) {
         toggle.check();
@@ -96,13 +144,17 @@ export default class Game extends cc.Component {
 
     if (this.isOver()) {
       this.m_isOver = true;
-      this._selectItems.push(toggle);
-      cc.error(toggle.node.name);
-      let isWin = true;
+      this._selectItems.push(toggle.node);
       this.winPanel.active = true;
-      if (isWin) {
-        this.winPanel.getComponentInChildren(cc.Label).string = "调配完成";
+      cc.tween(this.winPanel)
+        .to(0.1, { scale: 2 })
+        .to(0.5, { scale: 1 })
+        .start();
+      if (this.isWin()) {
+        this.playAudio(this.winClip);
+        this.winPanel.getComponentInChildren(cc.Label).string = "调配成功";
       } else {
+        this.playAudio(this.failClip);
         this.winPanel.getComponentInChildren(cc.Label).string = "调配失败";
       }
       this.scheduleOnce(() => {
@@ -112,8 +164,10 @@ export default class Game extends cc.Component {
       return;
     }
 
-    this._selectItems.push(toggle);
+    this._selectItems.push(toggle.node);
     this._curProgressId++;
+    this.setCupStyle(toggle.node.name);
+    this.playAudio(this.progressAudios[this._curProgressId]);
     this.setHandPos();
   }
 
@@ -121,24 +175,46 @@ export default class Game extends cc.Component {
     return this._curProgressId >= ORDER_PROGRESS.length - 1;
   }
 
-  isWin() {}
+  isWin() {
+    const itemType = this._selectItems[0].name;
+    const newArray = this._selectItems
+      .filter((v, i) => {
+        return i > 0;
+      })
+      .map((v) => {
+        return v.name;
+      })
+      .join(",");
+
+    for (let i = 0; i < ANSWER_CONFIG.length; i++) {
+      if (
+        ANSWER_CONFIG[i].type == itemType &&
+        ANSWER_CONFIG[i].condition == newArray
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   onClickAgain() {
-    cc.audioEngine.play(this.clickClip, false, 1);
+    this.audioSource.play();
     this.m_isOver = false;
     this._curProgressId = 0;
     this.setHandPos();
+    this.setCupStyle("空杯");
     this._selectItems.forEach((toggle) => {
-      toggle.uncheck();
+      toggle.getComponent(cc.Toggle).uncheck();
     });
     this._selectItems = [];
   }
 
   onClickSmallGame() {
-    cc.audioEngine.play(this.clickClip, false, 1);
+    this.audioSource.play();
   }
 
   onClickSafeTest() {
-    cc.audioEngine.play(this.clickClip, false, 1);
+    this.audioSource.play();
   }
 }
