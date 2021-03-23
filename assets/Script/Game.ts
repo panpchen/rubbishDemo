@@ -31,10 +31,10 @@ export default class Game extends cc.Component {
   private _tip: cc.Node = null;
   private _selectItems: cc.Toggle[] = [];
   private _curProgressId: number = 0;
+  private _isOver: boolean = false;
 
   onLoad() {
     Game.instance = this;
-    this._curProgressId = 0;
     this.setHandPos();
   }
 
@@ -54,25 +54,16 @@ export default class Game extends cc.Component {
     this._tip.parent = cc.director.getScene();
   }
 
-  reset() {
-    this._curProgressId = 0;
-    this._selectItems = [];
-  }
-
   onClickItem(toggle: cc.Toggle, parm) {
     cc.audioEngine.play(this.clickClip, false, 1);
 
-    if (this.isOver()) {
-      this._selectItems.push(toggle);
-      let isWin = true;
-      if (isWin) {
-        this.reset();
-        this.winPanel.active = true;
-        this.scheduleOnce(() => {
-          this.winPanel.active = false;
-        }, 2.5);
+    if (this._isOver) {
+      if (!toggle.isChecked) {
+        toggle.check();
       } else {
+        toggle.uncheck();
       }
+      this.showTips("已经调配完成啦, 请再调一杯吧");
       return;
     }
 
@@ -84,6 +75,7 @@ export default class Game extends cc.Component {
       }
     }
 
+    // cc.error(clickProgressId, this._curProgressId);
     if (clickProgressId > this._curProgressId) {
       this.showTips("请按顺序执行哦");
       if (toggle.isChecked) {
@@ -92,13 +84,26 @@ export default class Game extends cc.Component {
       return;
     }
 
-    cc.error(clickProgressId, this._curProgressId);
     if (clickProgressId < this._curProgressId) {
       this.showTips("已经做过该步骤了哦");
       if (!toggle.isChecked) {
         toggle.check();
       } else {
         toggle.uncheck();
+      }
+      return;
+    }
+
+    if (this.isOver()) {
+      this._isOver = true;
+      this._selectItems.push(toggle);
+      let isWin = true;
+      if (isWin) {
+        this.winPanel.active = true;
+        this.scheduleOnce(() => {
+          this.winPanel.active = false;
+        }, 2.5);
+      } else {
       }
       return;
     }
@@ -116,10 +121,13 @@ export default class Game extends cc.Component {
 
   onClickAgain() {
     cc.audioEngine.play(this.clickClip, false, 1);
+    this._isOver = false;
+    this._curProgressId = 0;
     this.setHandPos();
     this._selectItems.forEach((toggle) => {
       toggle.uncheck();
     });
+    this._selectItems = [];
   }
 
   onClickSmallGame() {
