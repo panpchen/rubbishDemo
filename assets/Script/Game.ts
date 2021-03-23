@@ -8,11 +8,11 @@
 const { ccclass, property } = cc._decorator;
 
 const HAND_POS = [
-  cc.v2(-400, -40),
-  cc.v2(-270, 146),
-  cc.v2(190, 106),
-  cc.v2(400, -40),
-  cc.v2(330, -280),
+  cc.v2(-304, -204),
+  cc.v2(-125, 200),
+  cc.v2(280, 220),
+  cc.v2(580, -100),
+  cc.v2(580, -260),
 ];
 
 const ORDER_PROGRESS = ["汁", "水", "色", "味", "碳酸氢钠"];
@@ -23,10 +23,14 @@ export default class Game extends cc.Component {
   tipPrefab: cc.Prefab = null;
   @property(cc.Node)
   hand: cc.Node = null;
+  @property(cc.Node)
+  winPanel: cc.Node = null;
+  @property(cc.AudioClip)
+  clickClip: cc.AudioClip = null;
   public static instance: Game = null;
   private _tip: cc.Node = null;
-  private _selectItemsName: string[] = [];
-  private _curProgressId: number = -1;
+  private _selectItems: cc.Toggle[] = [];
+  private _curProgressId: number = 0;
 
   onLoad() {
     Game.instance = this;
@@ -50,8 +54,29 @@ export default class Game extends cc.Component {
     this._tip.parent = cc.director.getScene();
   }
 
-  onClickItem(evt: cc.Toggle, parm) {
-    let clickProgressId = -1;
+  reset() {
+    this._curProgressId = 0;
+    this._selectItems = [];
+  }
+
+  onClickItem(toggle: cc.Toggle, parm) {
+    cc.audioEngine.play(this.clickClip, false, 1);
+
+    if (this.isOver()) {
+      this._selectItems.push(toggle);
+      let isWin = true;
+      if (isWin) {
+        this.reset();
+        this.winPanel.active = true;
+        this.scheduleOnce(() => {
+          this.winPanel.active = false;
+        }, 2.5);
+      } else {
+      }
+      return;
+    }
+
+    let clickProgressId = 0;
     for (let i = 0; i < ORDER_PROGRESS.length; i++) {
       if (parm.indexOf(ORDER_PROGRESS[i]) != -1) {
         clickProgressId = i;
@@ -61,32 +86,47 @@ export default class Game extends cc.Component {
 
     if (clickProgressId > this._curProgressId) {
       this.showTips("请按顺序执行哦");
-      if (evt.isChecked) {
-        evt.uncheck();
+      if (toggle.isChecked) {
+        toggle.uncheck();
       }
       return;
     }
 
+    cc.error(clickProgressId, this._curProgressId);
     if (clickProgressId < this._curProgressId) {
       this.showTips("已经做过该步骤了哦");
-      if (!evt.isChecked) {
-        evt.check();
+      if (!toggle.isChecked) {
+        toggle.check();
       } else {
-        evt.uncheck();
+        toggle.uncheck();
       }
       return;
     }
 
-    this._selectItemsName.push(parm);
-
+    this._selectItems.push(toggle);
     this._curProgressId++;
-
     this.setHandPos();
   }
 
-  onClickAgain() {}
+  isOver() {
+    return this._curProgressId >= ORDER_PROGRESS.length - 1;
+  }
 
-  onClickSmallGame() {}
+  isWin() {}
 
-  onClickSafeTest() {}
+  onClickAgain() {
+    cc.audioEngine.play(this.clickClip, false, 1);
+    this.setHandPos();
+    this._selectItems.forEach((toggle) => {
+      toggle.uncheck();
+    });
+  }
+
+  onClickSmallGame() {
+    cc.audioEngine.play(this.clickClip, false, 1);
+  }
+
+  onClickSafeTest() {
+    cc.audioEngine.play(this.clickClip, false, 1);
+  }
 }
