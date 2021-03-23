@@ -31,7 +31,7 @@ export default class Game extends cc.Component {
   private _tip: cc.Node = null;
   private _selectItems: cc.Toggle[] = [];
   private _curProgressId: number = 0;
-  private _isOver: boolean = false;
+  private m_isOver: boolean = false;
 
   onLoad() {
     Game.instance = this;
@@ -57,7 +57,7 @@ export default class Game extends cc.Component {
   onClickItem(toggle: cc.Toggle, parm) {
     cc.audioEngine.play(this.clickClip, false, 1);
 
-    if (this._isOver) {
+    if (this.m_isOver) {
       if (!toggle.isChecked) {
         toggle.check();
       } else {
@@ -95,16 +95,20 @@ export default class Game extends cc.Component {
     }
 
     if (this.isOver()) {
-      this._isOver = true;
+      this.m_isOver = true;
       this._selectItems.push(toggle);
+      cc.error(toggle.node.name);
       let isWin = true;
+      this.winPanel.active = true;
       if (isWin) {
-        this.winPanel.active = true;
-        this.scheduleOnce(() => {
-          this.winPanel.active = false;
-        }, 2.5);
+        this.winPanel.getComponentInChildren(cc.Label).string = "调配完成";
       } else {
+        this.winPanel.getComponentInChildren(cc.Label).string = "调配失败";
       }
+      this.scheduleOnce(() => {
+        this.winPanel.active = false;
+      }, 2.5);
+
       return;
     }
 
@@ -121,7 +125,7 @@ export default class Game extends cc.Component {
 
   onClickAgain() {
     cc.audioEngine.play(this.clickClip, false, 1);
-    this._isOver = false;
+    this.m_isOver = false;
     this._curProgressId = 0;
     this.setHandPos();
     this._selectItems.forEach((toggle) => {

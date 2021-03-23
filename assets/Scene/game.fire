@@ -772,9 +772,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 252,
-      "g": 176,
-      "b": 64,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -865,7 +865,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e35a3545-f94a-4a2c-8e99-4f8dcc12688a"
+      "__uuid__": "57472e18-10c7-4d5d-9708-aa01cb46980f"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -995,9 +995,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 252,
+      "g": 176,
+      "b": 64,
       "a": 255
     },
     "_contentSize": {
@@ -1088,7 +1088,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "57472e18-10c7-4d5d-9708-aa01cb46980f"
+      "__uuid__": "e35a3545-f94a-4a2c-8e99-4f8dcc12688a"
     },
     "_type": 1,
     "_sizeMode": 1,
@@ -1432,6 +1432,9 @@
       },
       {
         "__id__": 32
+      },
+      {
+        "__id__": 34
       }
     ],
     "_active": false,
@@ -1589,15 +1592,11 @@
     "_parent": {
       "__id__": 29
     },
-    "_children": [
-      {
-        "__id__": 33
-      }
-    ],
+    "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 35
+        "__id__": 33
       }
     ],
     "_prefab": null,
@@ -1649,17 +1648,49 @@
     "_id": "b7CX6fy7lOir3VfVYhEcvq"
   },
   {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 32
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "e58fee04-805d-45da-9a92-89766d49fe1a"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": "feB1ajLg9OtaXWA9GHPeOg"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 32
+      "__id__": 29
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 34
+        "__id__": 35
       }
     ],
     "_prefab": null,
@@ -1715,7 +1746,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 33
+      "__id__": 34
     },
     "_enabled": true,
     "_materials": [
@@ -1742,38 +1773,6 @@
     "_N$overflow": 0,
     "_N$cacheMode": 1,
     "_id": "7d1YA6X3JD2a/Mj6wT77qW"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 32
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "e58fee04-805d-45da-9a92-89766d49fe1a"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "feB1ajLg9OtaXWA9GHPeOg"
   },
   {
     "__type__": "cc.BlockInputEvents",
@@ -8130,8 +8129,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "苹果味",
-    "_N$string": "苹果味",
+    "_string": "葡萄味",
+    "_N$string": "葡萄味",
     "_fontSize": 22,
     "_lineHeight": 22,
     "_enableWrapText": false,
@@ -8733,8 +8732,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "苹果味",
-    "_N$string": "苹果味",
+    "_string": "芒果味",
+    "_N$string": "芒果味",
     "_fontSize": 22,
     "_lineHeight": 22,
     "_enableWrapText": false,
@@ -9336,8 +9335,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "苹果味",
-    "_N$string": "苹果味",
+    "_string": "奶茶味",
+    "_N$string": "奶茶味",
     "_fontSize": 22,
     "_lineHeight": 22,
     "_enableWrapText": false,
@@ -9758,7 +9757,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sodaBtn",
+    "_name": "碳酸氢钠",
     "_objFlags": 0,
     "_parent": {
       "__id__": 152
