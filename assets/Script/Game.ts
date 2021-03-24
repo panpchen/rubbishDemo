@@ -69,11 +69,14 @@ export default class Game extends cc.Component {
       this._tip = cc.instantiate(this.tipPrefab);
     }
 
+    // this._tip.parent = cc.Canvas.instance.node;
+    this._tip.parent = cc.director.getScene();
+    // this._tip.setPosition(cc.v2(0, 100));
+
     if (content) {
       this._tip.getComponent(cc.Animation).play();
       this._tip.getComponent("TipsCtrl").setContent(content);
     }
-    this._tip.parent = cc.director.getScene();
   }
 
   setCupStyle(name = "") {
