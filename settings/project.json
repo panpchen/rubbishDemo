@@ -26,14 +26,8 @@
     ]
   ],
   "excluded-modules": [
-    "DragonBones",
-    "EditBox",
-    "Physics",
-    "PageView",
-    "PageViewIndicator",
     "ParticleSystem",
     "Slider",
-    "ScrollBar",
     "Spine Skeleton",
     "StudioComponent",
     "TiledMap",
@@ -60,10 +54,10 @@
   "simulator-orientation": false,
   "use-customize-simulator": true,
   "simulator-resolution": {
-    "height": 640,
-    "width": 960
+    "width": 960,
+    "height": 640
   },
-  "last-module-event-record-time": 1616350204142,
+  "last-module-event-record-time": 1630915888635,
   "assets-sort-type": "name",
   "facebook": {
     "appID": "",
@@ -76,7 +70,7 @@
     }
   },
   "preview-port": 7456,
-  "start-scene": "1e6ef5e5-17fe-409e-90ee-0f1b4a8c8030",
+  "start-scene": "4ed857f1-e9fb-4f15-b44c-6bf3faf3e9e0",
   "migrate-history": [
     "cloud-function"
   ],

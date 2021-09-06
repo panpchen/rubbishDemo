@@ -1,6 +1,7 @@
 {
-  "ver": "2.3.5",
+  "ver": "2.3.7",
   "uuid": "650ba657-3ad9-4544-aa0f-af9827674109",
+  "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -12,8 +13,9 @@
   "platformSettings": {},
   "subMetas": {
     "果绿色": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "1940f969-7b00-4fb4-9ba3-28f7a53cfc07",
+      "importer": "sprite-frame",
       "rawTextureUuid": "650ba657-3ad9-4544-aa0f-af9827674109",
       "trimType": "auto",
       "trimThreshold": 1,

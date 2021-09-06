@@ -1,6 +1,7 @@
 {
-  "ver": "2.3.5",
+  "ver": "2.3.7",
   "uuid": "190df5c0-ee7d-4d44-a115-e04f48522506",
+  "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -12,8 +13,9 @@
   "platformSettings": {},
   "subMetas": {
     "有水杯": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "22e985e4-34d1-47ab-9536-7aca95b66b9b",
+      "importer": "sprite-frame",
       "rawTextureUuid": "190df5c0-ee7d-4d44-a115-e04f48522506",
       "trimType": "auto",
       "trimThreshold": 1,

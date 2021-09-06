@@ -1,0 +1,139 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "fruitJump",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.36,
+  "sample": 50,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "btn0": {
+        "props": {
+          "y": [
+            {
+              "frame": 0,
+              "value": 620
+            },
+            {
+              "frame": 0.18,
+              "value": -60
+            }
+          ],
+          "scaleX": [
+            {
+              "frame": 0.18,
+              "value": 0.6
+            },
+            {
+              "frame": 0.26,
+              "value": 0.7
+            },
+            {
+              "frame": 0.34,
+              "value": 0.6
+            }
+          ]
+        }
+      },
+      "btn1": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.34,
+              "value": 620
+            },
+            {
+              "frame": 0.52,
+              "value": -60
+            }
+          ],
+          "scaleX": [
+            {
+              "frame": 0.34,
+              "value": 0.6
+            },
+            {
+              "frame": 0.52,
+              "value": 0.6
+            },
+            {
+              "frame": 0.6,
+              "value": 0.7
+            },
+            {
+              "frame": 0.68,
+              "value": 0.6
+            }
+          ]
+        }
+      },
+      "btn2": {
+        "props": {
+          "y": [
+            {
+              "frame": 0.68,
+              "value": 620
+            },
+            {
+              "frame": 0.86,
+              "value": -60
+            }
+          ],
+          "scaleX": [
+            {
+              "frame": 0.68,
+              "value": 0.6
+            },
+            {
+              "frame": 0.86,
+              "value": 0.6
+            },
+            {
+              "frame": 0.94,
+              "value": 0.7
+            },
+            {
+              "frame": 1.02,
+              "value": 0.6
+            }
+          ]
+        }
+      },
+      "btn3": {
+        "props": {
+          "y": [
+            {
+              "frame": 1.02,
+              "value": 620
+            },
+            {
+              "frame": 1.2,
+              "value": -60
+            }
+          ],
+          "scaleX": [
+            {
+              "frame": 1.02,
+              "value": 0.6
+            },
+            {
+              "frame": 1.2,
+              "value": 0.6
+            },
+            {
+              "frame": 1.28,
+              "value": 0.7
+            },
+            {
+              "frame": 1.36,
+              "value": 0.6
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

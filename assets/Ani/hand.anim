@@ -3,8 +3,8 @@
   "_name": "hand",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.7333333333333333,
-  "sample": 60,
+  "_duration": 1.1,
+  "sample": 40,
   "speed": 1,
   "wrapMode": 2,
   "curveData": {
@@ -15,15 +15,15 @@
           "value": 0
         },
         {
-          "frame": 0.25,
+          "frame": 0.375,
           "value": 32
         },
         {
-          "frame": 0.48333333333333334,
+          "frame": 0.725,
           "value": 32
         },
         {
-          "frame": 0.7333333333333333,
+          "frame": 1.1,
           "value": 0
         }
       ]
